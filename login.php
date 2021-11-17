@@ -21,10 +21,10 @@
                     <p>Creez votre compte gratuitement</p>
                   </div>
                 </div>
-                <div class="row g-0">
-                  <div class="col-lg-6">
-                    <div class="card-body p-md-5 mx-md-4">
-                      <form>
+                <form action="index.php?p=loginVerification" method="post" >
+                  <div class="row g-0">
+                    <div class="col-lg-6">
+                      <div class="card-body p-md-5 mx-md-4">
                         <div class="form-outline mb-4">
                           <input type="text" id="username" class="form-control" placeholder="Entrez votre nom d'utilisateur"/>
                           <label class="form-label" for="username">Nom d'utilisateur<span style="color:red;" >*</span></label>
@@ -34,31 +34,28 @@
                           <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" />
                           <label class="form-label" for="password">Mot de passe<span style="color:red;" >*</span></label>
                         </div>
-                      </form>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="text-center">
+                          <img src="PhotosSite/coktail-banner.png" alt="coktail banner image" width="300px">
+                        </div>    
                     </div>
                   </div>
-                  
-                  <div class="col-lg-6">
-                      <div class="text-center">
-                        <img src="PhotosSite/coktail-banner.png" alt="coktail banner image" width="300px">
-                      </div>    
-                  </div>
-                </div>
-                <div class="row-0">
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Connexion</button>
-                    <div>
-                      <a class="text-muted" href="#">Mot de passe oublié?</a>
+                  <div class="row-0">
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Connexion</button>
+                      <div>
+                        <a class="text-muted" href="#">Mot de passe oublié?</a>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Vous n'avez pas de compte?</p>
+                        <button type="button" class="btn btn-outline-danger" onclick="window.location.href='index.php?p=signup';">Créez un compte</button>
                     </div>
                   </div>
-
-                  <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 me-2">Vous n'avez pas de compte?</p>
-                    <form action="signup.html" method="">
-                        <button type="submit" class="btn btn-outline-danger">Créez un compte</button>
-                    </form> 
-                  </div>
-                </div>
+                </form> 
               </div>
             </div>
           </div>
