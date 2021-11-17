@@ -1,0 +1,14 @@
+body {
+    font-family: cursive;
+}
+.header-coktail {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+.btn-yellow {
+    background-color: white;
+}
+.large-search {
+    width: 600px;
+}
