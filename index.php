@@ -46,14 +46,25 @@
                 </svg>
               </button>
             </form>
-            <form class="d-flex" action="login.html" method="">
+            <form class="d-flex" action="login.html?p=login" method="">
                 <button class="btn btn-yellow ms-2" type="submit">Zone de Connexion</button>
             </form>
           </div>
         </div>
       </nav>
+
       <!-- MAIN -->
-      <main>
+      <main>  
+      <!-- Inclusions des differentes parties de la page -->
+      if (isset($_GET['p'])) { 
+        $fichier=$_GET['p'].'.php';
+          if (file_exists($fichier))   include($fichier) ;
+          else  echo "Erreur 404: la page demandée n'existe pas";
+      }else{
+        if (file_exists('ContenuIndex.php')) include('ContenuIndex.php');
+        else  echo "Erreur 404: la page demandée n'existe pas";
+      }
+?>
         <div class="container-fluid">
           <div class="row">
             <div class="col-2 border border-top-0">
