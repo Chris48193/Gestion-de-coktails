@@ -23,11 +23,10 @@
               <div class="row">
                 <span >Sous-categories: <span>
               </div>
-  
               <div class="row">
                 <ul class="nav nav-pills flex-column">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Fruit</a>
+                    <a class="nav-link" href="calculer(Fruit)">Fruit</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Légumes</a>
@@ -67,7 +66,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Card title</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="index.php?detailsRecette" class="btn btn-primary">Details</a>
+                      <a href="index.php?p=detailsRecette" class="btn btn-primary">Details</a>
                     </div>
                   </div>
                 </div> 

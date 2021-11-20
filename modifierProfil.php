@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Création de compte</title>
+    <title>Modification de profil</title>
 </head>
 <body>
     <section class="h-100 gradient-form" style="background-color: #eee;">
@@ -15,38 +15,38 @@
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-10">
               <div class="card rounded-3 text-black">
-                <form action="index.php?p=signupVerification" method="post">
+                <form action="index.php?p=loginVerification" method="post">
                   <div class="row g-0">
                     <div class="text-center">
                       <h4 class="mt-1 mb-5 pb-1">Nous sommes la team coktails de Metz</h4>
-                      <p>Creez votre compte gratuitement</p>
+                      <p>Vous pouvez modifiez les informations dont vous souhaitez</p>
                     </div>
                   </div>
                   <div class="row g-0">
                     <div class="col-lg-6">
                       <div class="card-body p-md-5 mx-md-4">
                         <div class="form-outline mb-4">
-                          <input type="text" id="username" class="form-control" placeholder="Entrez votre nom d'utilisateur"/>
-                          <label class="form-label" for="username">Nom d'utilisateur<span style="color:red;" >*</span></label>
+                          <input type="password" id="old-password" class="form-control" placeholder="Ancien mot de passe" />
+                          <label class="form-label" for="old-password">Ancien mot de passe</label>
                         </div>
         
                         <div class="form-outline mb-4">
-                          <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" />
-                          <label class="form-label" for="password">Mot de passe<span style="color:red;" >*</span></label>
+                          <input type="password" id="password" class="form-control" placeholder="Nouveau mot de passe" />
+                          <label class="form-label" for="password">Nouveau mot de passe</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Entrez votre nom" />
+                          <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Modifiez votre nom" />
                           <label class="form-label" for="lastname">Nom</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Entrez votre nom" />
+                          <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Modifiez votre nom" />
                           <label class="form-label" for="firstname">Prénom</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="email" id="email" name="email" class="form-control" placeholder="Entrez votre nom" />
+                          <input type="email" id="email" name="email" class="form-control" placeholder="Email" />
                           <label class="form-label" for="email">Email</label>
                         </div>
 
@@ -96,10 +96,7 @@
                   </div>
                   <div class="row-0">
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Creer mon compte</button>
-                      <div>
-                        <a class="text-muted" href="#!">Mot de pass oublié?</a>
-                      </div>
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Modifier mon profil</button>
                     </div>
                   </div> 
                 </form>      

@@ -32,16 +32,41 @@
 
 
         <form class="d-flex">
-          <input class="form-control ms-2 large-search" type="text" placeholder="Chercher un aliment">
+          <input class="form-control ms-2" type="text" placeholder="Chercher un aliment">
           <button class="btn border ms-2" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
             </svg>
           </button>
         </form>
-        <form class="d-flex" action="index.php?p=login">
-          <button class="btn btn-yellow ms-2" type="button" onclick="window.location.href='index.php?p=login';">Zone de Connexion</button>
-        </form>
+
+        <div class="d-flex zone-connexion">
+          <?php
+            if((isset($_GET['loggedIn']) && (strcmp($_GET['loggedIn'], 'false') == 0)) || !isset($_GET['loggedIn'])) {  
+            ?>
+              <form class="d-flex" action="index.php?p=loginVerification" method="POST">
+              <label for="login" class="form-label ms-2 mt-2">Login</label>
+              <input class="form-control ms-2 info" id="login" type="text" name="login" placeholder="">
+              <label for="password" class="form-label ms-2 mt-2">Mot de passe</label>
+              <input class="form-control ms-2 info" id="password" type="text" name="password" placeholder="">
+              <button class="btn btn-yellow bg-primary ms-2" type="submit">Connexion</button>
+              </form>
+              <form class="d-flex">
+                <button class="btn btn-yellow bg-primary ms-2" type="button" onclick="window.location.href='index.php?p=signup'">S'inscrire</button>
+              </form>
+           <?php } else {
+              ?>
+                <form class="d-flex " action="index.php?p=modifierProfil&loggedIn=true" method="POST">
+                <span class="space-form  mt-2">Rochella Vofo</span>
+                <button class="btn btn-yellow bg-primary ms-2 " type="submit">&nbsp;&nbsp;Mon Profil&nbsp;&nbsp;</button>
+              </form>
+              <form class="d-flex">
+                <button class="btn btn-yellow bg-primary ms-2" type="button" onclick="window.location.href='index.php?loggedIn=false'">Deconnexion</button>
+              </form>
+           <?php }
+          ?>
+          
+        </div>
       </div>
     </div>
   </nav>
@@ -53,7 +78,7 @@
           if (file_exists($fichier))   include($fichier) ;
           else  echo "Erreur 404: la page demandée n'existe pas";
      }else{
-        if (file_exists('ContenuIndex.php')) include('ContenuIndex.php');
+        if (file_exists('contenuIndex.php')) include('contenuIndex.php');
         else  echo "Erreur 404: la page demandée n'existe pas";
      }
     ?>
