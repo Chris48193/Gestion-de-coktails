@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="icon" type="image/png" sizes="16x16" href="PhotosSite/logo_trans.png">
+    <link href="css/style.css" rel="stylesheet">
     <title>Coin des coktails</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
       </button>
       <div class="collapse navbar-collapse" id="mynavbar">
         <form class="d-flex">
-          <button class="btn btn-yellow ms-2" type="button">Navigation</button>
+          <button class="btn btn-yellow ms-2" type="button" onclick="window.location.href='index.php'">Navigation</button>
         </form>
         <form class="d-flex" >
           <button class="btn btn-yellow ms-2" type="button" onclick="window.location.href='index.php?p=recettesLove'">Recettes 
