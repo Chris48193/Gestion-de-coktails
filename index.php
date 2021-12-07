@@ -41,30 +41,14 @@
         </form>
 
         <div class="d-flex zone-connexion">
-          <?php
-            if((isset($_GET['loggedIn']) && (strcmp($_GET['loggedIn'], 'false') == 0)) || !isset($_GET['loggedIn'])) {  
-            ?>
-              <form class="d-flex" action="index.php?p=loginVerification" method="POST">
-              <label for="login" class="form-label ms-2 mt-2">Login</label>
-              <input class="form-control ms-2 info" id="login" type="text" name="login" placeholder="">
-              <label for="password" class="form-label ms-2 mt-2">Mot de passe</label>
-              <input class="form-control ms-2 info" id="password" type="text" name="password" placeholder="">
-              <button class="btn btn-yellow bg-primary ms-2" type="submit">Connexion</button>
+              <form class="d-flex" action="dummytests/fonctions/testUser.php" method="POST">
+                <label for="login" class="form-label ms-2 mt-2">Login</label>
+                <input class="form-control ms-2 info" id="login" type="text" name="login" placeholder="">
+                <label for="password" class="form-label ms-2 mt-2">Mot de passe</label>
+                <input class="form-control ms-2 info" id="password" type="password" name="mdp" placeholder="">
+                <button class="btn btn-yellow bg-primary ms-2" type="submit">Connexion</button>
               </form>
-              <form class="d-flex">
-                <button class="btn btn-yellow bg-primary ms-2" type="button" onclick="window.location.href='index.php?p=signup'">S'inscrire</button>
-              </form>
-           <?php } else {
-              ?>
-                <form class="d-flex " action="index.php?p=modifierProfil&loggedIn=true" method="POST">
-                <span class="space-form  mt-2">Rochella Vofo</span>
-                <button class="btn btn-yellow bg-primary ms-2 " type="submit">&nbsp;&nbsp;Mon Profil&nbsp;&nbsp;</button>
-              </form>
-              <form class="d-flex">
-                <button class="btn btn-yellow bg-primary ms-2" type="button" onclick="window.location.href='index.php?loggedIn=false'">Deconnexion</button>
-              </form>
-           <?php }
-          ?>
+              <button class="btn btn-yellow bg-primary ms-2" type="button" onclick="window.location.href='index.php?p=signup'">S'inscrire</button>
           
         </div>
       </div>

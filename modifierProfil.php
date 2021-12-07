@@ -15,34 +15,34 @@
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-10">
               <div class="card rounded-3 text-black">
-                <form action="index.php?p=loginVerification" method="post">
+                <form action="dummytests/fonctions/testUser.php" method="post">
                   <div class="row g-0">
                     <div class="text-center">
                       <h4 class="mt-1 mb-5 pb-1">Nous sommes la team coktails de Metz</h4>
-                      <p>Vous pouvez modifiez les informations dont vous souhaitez</p>
+                      <p>Vous pouvez modifiez les informations que vous souhaitez</p>
                     </div>
                   </div>
                   <div class="row g-0">
                     <div class="col-lg-6">
                       <div class="card-body p-md-5 mx-md-4">
                         <div class="form-outline mb-4">
-                          <input type="password" id="old-password" class="form-control" placeholder="Ancien mot de passe" />
-                          <label class="form-label" for="old-password">Ancien mot de passe</label>
+                          <input type="password" id="ancienMdp" name="ancienMdp" class="form-control" placeholder="Ancien mot de passe" />
+                          <label class="form-label" for="ancienMdp">Ancien mot de passe</label>
                         </div>
         
                         <div class="form-outline mb-4">
-                          <input type="password" id="password" class="form-control" placeholder="Nouveau mot de passe" />
-                          <label class="form-label" for="password">Nouveau mot de passe</label>
+                          <input type="password" id="mdp" name="mdp" class="form-control" placeholder="Nouveau mot de passe" />
+                          <label class="form-label" for="mdp">Nouveau mot de passe</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Modifiez votre nom" />
-                          <label class="form-label" for="lastname">Nom</label>
+                          <input type="text" id="nom" name="nom" class="form-control" placeholder="Modifiez votre nom" />
+                          <label class="form-label" for="nom">Nom</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Modifiez votre nom" />
-                          <label class="form-label" for="firstname">Prénom</label>
+                          <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Modifiez votre nom" />
+                          <label class="form-label" for="prenom">Prénom</label>
                         </div>
 
                         <div class="form-outline mb-4">
@@ -68,29 +68,24 @@
                         </div>
         
                         <div class="form-outline mb-4">
-                          <input type="date" id="dateNaissance" class="form-control" placeholder="" />
-                          <label class="form-label" for="dateNaissance">Date de naissance</label>
+                          <input type="date" id="naissance" name="naissance" class="form-control" placeholder="" />
+                          <label class="form-label" for="naissance">Date de naissance</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="text" id="adresse" class="form-control" placeholder="11 Rue Dupont" />
-                          <label class="form-label" for="adresse">Adresse</label>
+                          <input type="text" id="nomAdresse" name="nomAdresse" class="form-control" placeholder="11 Rue Dupont" />
+                          <label class="form-label" for="nomAdresse">Adresse</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="number" id="codePostal" class="form-control" placeholder="57000" />
+                          <input type="number" id="codePostal" name="codePostal" class="form-control" placeholder="57000" />
                           <label class="form-label" for="codePostal">Code Postal</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="text" id="ville" class="form-control" placeholder="" />
+                          <input type="text" id="ville" name="ville" class="form-control" placeholder="" />
                           <label class="form-label" for="ville">Ville</label>
-                        </div>
-                          
-                        <div class="form-outline mb-4">
-                          <input type="text" id="pays" class="form-control" placeholder="Pays" />
-                          <label class="form-label" for="pays">Pays</label>
-                        </div>      
+                        </div>     
                       </div>
                     </div>
                   </div>
