@@ -17,4 +17,14 @@ body {
 .space-form {
     margin-left: 50px !important;
 }
+.coktail-title:hover {
+    color:red;
+}
+.coktail-title:focus {
+    box-shadow: none;
+}
+.heart {
+    color: green;
+}
+
 
