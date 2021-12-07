@@ -15,7 +15,7 @@
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-10">
               <div class="card rounded-3 text-black">
-                <form action="dummytests/fonctions/testUser.php" method="post">
+                <form action="./testUser.php?function=signup" method="post">
                   <div class="row g-0">
                     <div class="text-center">
                       <h4 class="mt-1 mb-5 pb-1">Nous sommes la team coktails de Metz</h4>

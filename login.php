@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
 </head>
-<body>
+<body> -->
     <section class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -21,18 +21,18 @@
                     <p>Creez votre compte gratuitement</p>
                   </div>
                 </div>
-                <form action="index.php?p=loginVerification" method="post" >
+                <form action="./testUser.php?function=login" method="post" >
                   <div class="row g-0">
                     <div class="col-lg-6">
                       <div class="card-body p-md-5 mx-md-4">
                         <div class="form-outline mb-4">
-                          <input type="text" id="username" class="form-control" placeholder="Entrez votre nom d'utilisateur"/>
-                          <label class="form-label" for="username">Nom d'utilisateur<span style="color:red;" >*</span></label>
+                          <input type="text" id="login" name="login" class="form-control" placeholder="Entrez votre nom d'utilisateur"/>
+                          <label class="form-label" for="login">Nom d'utilisateur<span style="color:red;" >*</span></label>
                         </div>
       
                         <div class="form-outline mb-4">
-                          <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" />
-                          <label class="form-label" for="password">Mot de passe<span style="color:red;" >*</span></label>
+                          <input type="password" id="mdp" name="mdp" class="form-control" placeholder="Entrez votre mot de passe" />
+                          <label class="form-label" for="mdp">Mot de passe<span style="color:red;" >*</span></label>
                         </div>
                       </div>
                     </div>
@@ -46,9 +46,9 @@
                   <div class="row-0">
                     <div class="text-center pt-1 mb-5 pb-1">
                       <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Connexion</button>
-                      <div>
+                      <!-- <div>
                         <a class="text-muted" href="#">Mot de passe oublié?</a>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="d-flex align-items-center justify-content-center pb-4">
                       <p class="mb-0 me-2">Vous n'avez pas de compte?</p>
@@ -61,5 +61,5 @@
           </div>
         </div>
       </section>   
-</body>
-</html>
+<!-- </body>
+</html> -->

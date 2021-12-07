@@ -61,14 +61,14 @@
       $coktail = '<div class="col-sm-3 mb-2">
                     <div class="card" style="width: 12rem;">
                     <div class="text-left">
-                        <form class="d-flex" method="POST" action="index.php?p=detailsRecette">
-                        <button type="submit" class="btn ms-2 h4 coktail-title" value=' . $title .'>' . $title . ' </button>
+                        <form class="d-flex" method="POST" action="index.php?p=detailsRecette" target="_blank">
+                        <button type="submit" class="btn ms-2 h4 coktail-title" name="preparation" value="Preparation">' . $title . ' </button>
                         <button class="btn mb-2 btn-yellow ms-2 heart" type="button"> ' .
                            displayHeart($colorLike) .'
                         </button>
                         </form>
                     </div>
-                    <img src=' . $img . ' class="card-img-top" alt="..." width="30px" height="100px">
+                    <img src="' . $img . '" class="card-img-top" alt="..." width="30px" height="100px">
                     <div class="card-body">
                         <p class="card-text">'. $index . '</p>
                     </div>
@@ -82,19 +82,20 @@
         $rowDisplay = '<div class="row mb-2">';
         foreach($recettes as $coktails => $details){
             if($row >= 0) { 
-            // On affiche quatre coktails par ligne bootstrap
-            $rowDisplay .= makeCoktail($details["titre"], $details["likeColor"],
-                                        extraireIndex($details["index"]), $details["img"]);
-            $row--;      
-        } else {
-            $rowDisplay . "</div>";
-            // Il faut encore addiche que 3 coktails dans la div
-            $row = 3;
-            // On affiche la suite sur une nouvelle ligne
-            $rowDisplay .= '<div class="row mb-2">' . 
-                            makeCoktail($details["titre"], $details["likeColor"],
-                            extraireIndex($details["index"]), $details["img"]);
-                }
+              // On affiche quatre coktails par ligne bootstrap
+              $rowDisplay .= makeCoktail($details["titre"], $details["likeColor"],
+                                          extraireIndex($details["index"]), $details["img"]);
+              $row--;      
+          } else {
+              $rowDisplay . "</div>";
+              // Il faut encore addiche que 3 coktails dans la div
+              $row = 3;
+              // On affiche la suite sur une nouvelle ligne
+              $rowDisplay .= '<div class="row mb-2">' . 
+                              makeCoktail($details["titre"], $details["likeColor"],
+                              extraireIndex($details["index"]), $details["img"]);
+              //$rowDisplay.=$details["preparation"];
+          }
         }
         return $rowDisplay;
     }
