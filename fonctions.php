@@ -114,13 +114,26 @@
 
     }
 
-    
-
-    function calculerSousCategories($superCat, $element){
-      return ['SousCat1' , "SousCat2", "SousCat3"];
+    		
         /// Parcourir le tableau et afficher les sous-categories
         // retourner le tableau des sous catégories de l'élément
-
+		
+    function calculerSousCategories($Hierarchie,$element){
+		
+		//Re-enlever les underscores placés pour que le passage de la variable "$element" fonctionne
+		if(substr_count($element,'_')>=1){
+			$element=str_replace('_',' ',$element);
+		}
+		
+		if($Hierarchie[$element]!=null){
+			$array=$Hierarchie[$element];
+			if(array_key_exists("sous-categorie",$array)){
+				$array=array_values($array["sous-categorie"]);
+				return $array;
+			}	
+		}
+		
+		
     }
 
     function extraireCoktails($superCat, $element){
