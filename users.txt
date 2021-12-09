@@ -1,1 +1,0 @@
-a:1:{i:0;a:11:{s:5:"login";s:5:"chris";s:3:"mdp";s:6:"blabla";s:3:"nom";s:0:"";s:6:"prenom";s:0:"";s:4:"sexe";s:5:"femme";s:5:"email";s:0:"";s:9:"naissance";s:0:"";s:10:"nomAdresse";s:0:"";s:10:"codePostal";s:0:"";s:5:"ville";s:0:"";s:9:"telephone";s:0:"";}}

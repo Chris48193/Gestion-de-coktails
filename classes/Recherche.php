@@ -99,6 +99,10 @@ class Recherche {
         return $this->mots;
     }
 
+    /**
+     * Permet de classifier les aliments en fonction de s'ils ont été reconnus ou pas
+     * @return recap Le récapitulatif de la classification
+     */
     public function separationAliments() {
         $alimentsSouhaites = array();
         $alimentsNonSouhaites = array();
@@ -131,6 +135,7 @@ class Recherche {
             }
         }
 
+        //Récapitulatif et stockage dans un array
         $this->recap = [
             "alimentsSouhaites" => $alimentsSouhaites,
             "alimentsNonSouhaites" => $alimentsNonSouhaites,
@@ -141,6 +146,9 @@ class Recherche {
         return $this->recap;
     }
 
+    /**
+     * Classification des recettes en fonction de leurs scores
+     */
     public function recuperationRecettes() {
 
         if(count($this->recap["alimentsSouhaites"]) > 0 || count($this->recap["alimentsNonSouhaites"]) > 0) {
