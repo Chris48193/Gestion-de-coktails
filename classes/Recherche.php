@@ -8,7 +8,13 @@ class Recherche {
     private $erreur=[];
     private $mots=[];
     private $hierarchie_simple = [];
-    private $recap;
+    private $recap = [
+        "alimentsSouhaites" => [],
+        "alimentsNonSouhaites" => [],
+        "alimentsNonSouhaitesAvecSuperCategorie" => [],
+        "alimentsSouhaitesAvecSuperCategorie" => [],
+        "elementsNonReconnus" => []
+    ];
     private $request_text; //Texte de la requete
     private $Hierarchie;
     private $Recettes;
