@@ -24,9 +24,32 @@
                if($superCat != null && $element != null){
                     $sousCat = calculerSousCategories($Hierarchie,$element);
 					//Il est nécessaire de bien représenter l'element(sans underscores)dans le fil d'ariane
-                    $affichage = '<div class="row">
-                                    <a href="#">'.str_replace('_',' ',$path).'</a>
-                                  </div>
+					$dynamicPath="";
+					$superLinks = explode("/",$path);
+                    $affichage = '<div class="row">';
+					
+						foreach($superLinks as $key => $link){
+								if($key>0){
+								$holdString=$superLinks[$key-1] ."/";
+								$dynamicSuperCat=$superLinks[$key-1];
+								$dynamicPath.= $holdString;
+								}
+								
+							if($link=="Aliment"){
+								$affichage .= ' <span>
+												<a href="index.php?p=contenuIndex&element='.$link.'">'.$link.'</a>
+												/<span>';
+								
+							}else{
+								$affichage .= '<span>
+										<a href="index.php?p=contenuIndex&superCat='.$dynamicSuperCat.'&element='.$link.
+																					'&path='.substr($dynamicPath,0,-1).'">'.str_replace('_',' ',$link).'</a>
+												/<span>';
+							}
+						}
+						$affichage=rtrim($affichage,"/<span>") . "<span>";
+						
+                    $affichage .='</div>
 								  </br>
                                     <!-- Liste des sous-categories -->
                                   <div class="row">
@@ -97,14 +120,29 @@
                 }
 				
 				if($sousCatExist==false && $element !="Aliment" ){
-					echo '<div class="row">
-                                    <a href="#">'.str_replace('_',' ',$path).'</a>
-                                  </div>
-								  </br>
-                                    <!-- Liste des sous-categories -->
-                                  <div class="row">
-                                    <span >Sous-categories: <span>
-                                  </div>Non existantes !';
+					$affichageFinal = '<div class="row">';
+					foreach($superLinks as $key => $link){
+						
+						if($key>0){
+							$affichageFinal.='<span>
+										<a href="index.php?p=contenuIndex&superCat='.$superLinks[$key-1].'&element='.$link.
+																					'&path='.$dynamicPath.'">'.str_replace('_',' ',$link).'</a>
+										/<span>';	
+						}else{
+							$affichageFinal.='<span>
+										<a href="index.php?p=contenuIndex&superCat='.$superLinks[$key].'&element='.$link.
+																					'&path='.$dynamicPath.'">'.str_replace('_',' ',$link).'</a>
+										/<span>';	
+							
+						}
+										
+                                  
+					}
+					$affichageFinal=rtrim($affichage,"/<span>") . "<span>";
+					$affichageFinal .=  '   -> Non existantes !
+								  </div>
+								  </br>';
+					echo $affichageFinal;
 				}
           ?>    
         </div>
