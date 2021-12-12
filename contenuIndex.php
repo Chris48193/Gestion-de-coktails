@@ -10,6 +10,10 @@
           </div>
           <?php
 			include("Donnees.inc.php");
+			$coktailsExtrait = array();
+			$coktailsComplets = array(); 
+			$coktailsSansSousCat= array();
+			
             $sousCatExist = false;
             if (isset($_GET['superCat']) && isset($_GET['element'])) {
               $superCat = $_GET['superCat'];
@@ -156,13 +160,22 @@
 
           <!-- Affichage des recettes selon la catégorie sélectionné | Génération avec php -->
           <?php
+		 /* if($element=="Aliment"){
+				$coktailsComplets=extraireToutCoktails($coktailsComplets,$Recettes);
+                echo afficherListeRecettes($coktailsComplets);
+            }   */ 
             if($sousCatExist) {
-              $coktailsExtrait = extraireCoktails($superCat, $element);
+              $coktailsExtrait = extraireCoktails($coktailsExtrait,$Hierarchie,$Recettes,$sousCat, $element);
+			  
               echo afficherListeRecettes($coktailsExtrait);
 
-            } else {
-              echo afficherListeRecettes($tableau);
-            }              
+            }if($sousCatExist==false){
+			  $coktailsSansSousCat=extraireDerniersCoktails($coktailsSansSousCat,$Recettes,$element);
+			  
+			  echo afficherListeRecettes($coktailsSansSousCat);
+				
+				
+			}          
           ?>
           <!-- Fin de la génération PHP -->
         </div>
