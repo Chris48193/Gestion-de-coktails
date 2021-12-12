@@ -160,10 +160,11 @@
 
           <!-- Affichage des recettes selon la catégorie sélectionné | Génération avec php -->
           <?php
-		 /* if($element=="Aliment"){
+		  
+		  if($element=="Aliment"){
 				$coktailsComplets=extraireToutCoktails($coktailsComplets,$Recettes);
                 echo afficherListeRecettes($coktailsComplets);
-            }   */ 
+            }    
             if($sousCatExist) {
               $coktailsExtrait = extraireCoktails($coktailsExtrait,$Hierarchie,$Recettes,$sousCat, $element);
 			  

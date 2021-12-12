@@ -15,12 +15,17 @@
         return $index;
     }
 
-    function makeCoktail($title , $colorLike, $index, $img){
+    function makeCoktail($title , $colorLike, $index, $img,$preparation,$ingredients){
       $coktail = '<div class="col-sm-3 mb-2">
                     <div class="card" style="width: 12rem;">
                     <div class="text-left">
                         <form class="d-flex" method="POST" action="index.php?p=detailsRecette" target="_blank">
-                        <button type="submit" class="btn ms-2 h4 coktail-title" name="preparation" value="Preparation">' . $title . ' </button>
+						<input type="hidden" name="title" value="'.$title.'"/>
+						<input type="hidden" name="like" value="'.$colorLike.'"/>
+						<input type="hidden" name="index" value="'.$index.'"/>
+						<input type="hidden" name="img" value="'.$img.'"/>
+						<input type="hidden" name="ingredients" value="'.$ingredients.'"/>
+                        <button type="submit" class="btn ms-2 h4 coktail-title" name="preparation" value="'.$preparation.'">' . $title . ' </button>
                         <button class="btn mb-2 btn-yellow ms-2 heart" type="button"> ' .
                            displayHeart($colorLike) .'
                         </button>
@@ -42,7 +47,7 @@
             if($row >= 0) { 
               // On affiche quatre coktails par ligne bootstrap
               $rowDisplay .= makeCoktail($details["titre"], $details["likeColor"],
-                                          extraireIndex($details["index"]), $details["img"]);
+                                          extraireIndex($details["index"]), $details["img"], $details["preparation"],$details["ingredients"]);
               $row--;      
           } else {
               $rowDisplay . "</div>";
@@ -51,7 +56,7 @@
               // On affiche la suite sur une nouvelle ligne
               $rowDisplay .= '<div class="row mb-2">' . 
                               makeCoktail($details["titre"], $details["likeColor"],
-                              extraireIndex($details["index"]), $details["img"]);
+                              extraireIndex($details["index"]), $details["img"],$details["preparation"],$details["ingredients"]);
               //$rowDisplay.=$details["preparation"];
           }
         }
@@ -95,62 +100,61 @@
     }
 
     function extraireCoktails(&$coktailsExtrait,$Hierarchie,$Recettes,$sousCat,$element){
-		
-		
-		 /*foreach($sousCat as $newElementkey => $newElementValue){
-				  if(calculerSousCategories($Hierarchie,$newElementValue)!=false){
-					 array_push($coktailsExtrait,extraireCoktails($Recettes,calculerSousCategories($Hierarchie,$newElementValue),$newElementValue)); 
-				  }*/
+
 		if(calculerSousCategories($Hierarchie,$element)!=false){
 		
-		if(substr_count($element,'_')>=1){
-			$element=str_replace('_',' ',$element);
-		}
-		
-		$tableauDeFormattage = array();
-		
-		 
-		
-		foreach($Recettes as $receiptNr => $attributes){
-			foreach($attributes as $attributeName => $value){
-				if($attributeName=="index"){
-					foreach($value as $key => $aliment){
-							
-							if($aliment==$element){
-								$currentImg=trouverImageCorrespondante($Recettes[$receiptNr]["titre"]);
-								$tableauDeFormattage["titre"]=$Recettes[$receiptNr]["titre"];
-								$tableauDeFormattage["preparation"]=$Recettes[$receiptNr]["preparation"]; 
-								$tableauDeFormattage["img"]=$currentImg;
-								$tableauDeFormattage["likeColor"]="aliceblue";
-								$tableauDeFormattage["index"]=$Recettes[$receiptNr]["index"];
-								if(!in_array($tableauDeFormattage,$coktailsExtrait)){
-									array_push($coktailsExtrait,$tableauDeFormattage);
+			if(substr_count($element,'_')>=1){
+				$element=str_replace('_',' ',$element);
+			}
+			
+			$tableauDeFormattage = array();
+			
+			 
+			
+			foreach($Recettes as $receiptNr => $attributes){
+				foreach($attributes as $attributeName => $value){
+					if($attributeName=="index"){
+						foreach($value as $key => $aliment){
+								
+								if($aliment==$element){
+									$currentImg=trouverImageCorrespondante($Recettes[$receiptNr]["titre"]);
+									$tableauDeFormattage["titre"]=$Recettes[$receiptNr]["titre"];
+									$tableauDeFormattage["preparation"]=$Recettes[$receiptNr]["preparation"]; 
+									$tableauDeFormattage["img"]=$currentImg;
+									$tableauDeFormattage["likeColor"]="aliceblue";
+									$tableauDeFormattage["index"]=$Recettes[$receiptNr]["index"];
+									$tableauDeFormattage["ingredients"]=$Recettes[$receiptNr]["ingredients"];
+									if(!in_array($tableauDeFormattage,$coktailsExtrait)){
+										array_push($coktailsExtrait,$tableauDeFormattage);
+									}
+									
 								}
 								
-							}
-							
-							if(in_array($aliment,$sousCat)){
-								$currentImg=trouverImageCorrespondante($Recettes[$receiptNr]["titre"]);
-								$tableauDeFormattage["titre"]=$Recettes[$receiptNr]["titre"];
-								$tableauDeFormattage["preparation"]=$Recettes[$receiptNr]["preparation"]; 
-								$tableauDeFormattage["img"]=$currentImg;
-								$tableauDeFormattage["likeColor"]="aliceblue";
-								$tableauDeFormattage["index"]=$Recettes[$receiptNr]["index"];
-								if(!in_array($tableauDeFormattage,$coktailsExtrait)){
-									array_push($coktailsExtrait,$tableauDeFormattage);
+								if(in_array($aliment,$sousCat)){
+									$currentImg=trouverImageCorrespondante($Recettes[$receiptNr]["titre"]);
+									$tableauDeFormattage["titre"]=$Recettes[$receiptNr]["titre"];
+									$tableauDeFormattage["preparation"]=$Recettes[$receiptNr]["preparation"]; 
+									$tableauDeFormattage["img"]=$currentImg;
+									$tableauDeFormattage["likeColor"]="aliceblue";
+									$tableauDeFormattage["index"]=$Recettes[$receiptNr]["index"];
+									$tableauDeFormattage["ingredients"]=$Recettes[$receiptNr]["ingredients"];
+									
+									if(!in_array($tableauDeFormattage,$coktailsExtrait)){
+										array_push($coktailsExtrait,$tableauDeFormattage);
+									}
+									
 								}
 								
-							}
-							
-							
-							
+								
+								
+						}
+					
 					}
-				
-				}
-				
-				
-			} 
-		}
+					
+					
+				} 
+			}
+			
 			foreach($sousCat as $newElementkey => $newElementValue){
 				return extraireCoktails($coktailsExtrait,$Hierarchie,$Recettes,calculerSousCategories($Hierarchie,$newElementValue),$newElementValue);
 			}
@@ -178,6 +182,7 @@
 								$tableauDeFormattage["img"]=$currentImg;
 								$tableauDeFormattage["likeColor"]="aliceblue";
 								$tableauDeFormattage["index"]=$Recettes[$receiptNr]["index"];
+								$tableauDeFormattage["ingredients"]=$Recettes[$receiptNr]["ingredients"];
 								if(!in_array($tableauDeFormattage,$coktailsComplets)){
 									array_push($coktailsComplets,$tableauDeFormattage);
 								}
@@ -211,6 +216,7 @@
 								$tableauDeFormattage["img"]=$currentImg;
 								$tableauDeFormattage["likeColor"]="aliceblue";
 								$tableauDeFormattage["index"]=$Recettes[$receiptNr]["index"];
+								$tableauDeFormattage["ingredients"]=$Recettes[$receiptNr]["ingredients"];
 								if(!in_array($tableauDeFormattage,$coktailsSansSousCat)){
 									array_push($coktailsSansSousCat,$tableauDeFormattage);
 								}
