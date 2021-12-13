@@ -15,7 +15,7 @@
         return $index;
     }
 
-    function makeCoktail($title , $colorLike, $index, $img,$preparation,$ingredients){
+    function makeCoktail($title , $colorLike, $index, $img,$preparation,$ingredients, $coktails){
       $coktail = '<div class="col-sm-3 mb-2">
                     <div class="card" style="width: 12rem;">
                     <div class="text-left">
@@ -25,9 +25,10 @@
 						<input type="hidden" name="index" value="'.$index.'"/>
 						<input type="hidden" name="img" value="'.$img.'"/>
 						<input type="hidden" name="ingredients" value="'.$ingredients.'"/>
+						<input type="hidden" name="id" value="'.$coktails.'"/>
                         <button type="submit" class="btn ms-2 h4 coktail-title" name="preparation" value="'.$preparation.'">' . $title . ' </button>
                         <button class="btn mb-2 btn-yellow ms-2 heart" type="button"> ' .
-                           displayHeart($colorLike) .'
+                           displayHeart($colorLike, $coktails) .'
                         </button>
                         </form>
                     </div>
@@ -46,9 +47,9 @@
         foreach($recettesExtraits as $coktails => $details){
             if($row >= 0) { 
               // On affiche quatre coktails par ligne bootstrap
-              $rowDisplay .= makeCoktail($details["titre"], $details["likeColor"],
-                                          extraireIndex($details["index"]), $details["img"], $details["preparation"],$details["ingredients"]);
-              $row--;      
+              	$rowDisplay .= makeCoktail($details["titre"], $details["likeColor"],
+                                          extraireIndex($details["index"]), $details["img"], $details["preparation"],$details["ingredients"], $coktails); 
+				$row--;      
           } else {
               $rowDisplay . "</div>";
               // Il faut encore addiche que 3 coktails dans la div
@@ -56,23 +57,46 @@
               // On affiche la suite sur une nouvelle ligne
               $rowDisplay .= '<div class="row mb-2">' . 
                               makeCoktail($details["titre"], $details["likeColor"],
-                              extraireIndex($details["index"]), $details["img"],$details["preparation"],$details["ingredients"]);
+                              extraireIndex($details["index"]), $details["img"],$details["preparation"],$details["ingredients"], $coktails);
               //$rowDisplay.=$details["preparation"];
           }
         }
         return $rowDisplay;
     }
 
-    function displayHeart($heartColor) {
+    function displayHeart($heartColor, $coktails) {
+		include("Donnees.inc.php");
+
         if($heartColor == "red"){
-            $button = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            $button = '<svg xmlns="http://www.w3.org/2000/svg" id="'.$coktails.'" width="16" height="16" fill="red" class="dislike bi bi-heart-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                         </svg>';
         } else {
-            $button = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart" viewBox="0 0 16 16">
+            $button = '<svg xmlns="http://www.w3.org/2000/svg" id="'.$coktails.'" width="16" height="16" fill="black" class="like bi bi-heart" viewBox="0 0 16 16">
                             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                         </svg>';
                         }
+
+
+		$fav = [];
+		if(isset($_SESSION['isLogin'])) {
+			if($likes = unserialize(file_get_contents("likes.txt"))) { 
+				if(isset($likes[$_SESSION['login']])) {
+					if(in_array($Recettes[$coktails], $likes[$_SESSION['login']])) {
+						$button = '<svg xmlns="http://www.w3.org/2000/svg" id="'.$coktails.'" width="16" height="16" fill="red" class="dislike bi bi-heart-fill" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+							</svg>';
+					}
+				}
+			}
+		} else if(isset($_SESSION['anonymous'])) {
+				$fav = array_merge($fav, $_SESSION['anonymous']);
+				if(in_array($Recettes[$coktails], $fav)) {
+					$button = '<svg xmlns="http://www.w3.org/2000/svg" id="'.$coktails.'" width="16" height="16" fill="red" class="dislike bi bi-heart-fill" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+						</svg>';
+				}
+		}
         return $button;
 
     }

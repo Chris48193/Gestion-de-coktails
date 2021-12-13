@@ -193,6 +193,22 @@ class Users {
             $_SESSION['codePostal'] = $this->codePostal;
             $_SESSION['ville'] = $this->ville;
             $_SESSION['telephone'] = $this->telephone;
+
+            //Complétions des recettes préférés
+            if($likes = unserialize(file_get_contents("likes.txt"))) {
+                if(isset($likes[$_SESSION['login']]) && isset($_SESSION['anonymous'])) {
+                    $likes[$_SESSION['login']] = array_merge($likes[$_SESSION['login']], $_SESSION['anonymous']);
+                } else if(!isset($likes[$_SESSION['login']]) && isset($_SESSION['anonymous'])) {
+                    $likes[$_SESSION['login']] = [];
+                    $likes[$_SESSION['login']] = array_merge($likes[$_SESSION['login']], $_SESSION['anonymous']);
+                }
+            } else {
+                if(isset($_SESSION['anonymous'])) {
+                    $likes[$_SESSION['login']] = [];
+                    $likes[$_SESSION['login']] = array_merge($likes[$_SESSION['login']], $_SESSION['anonymous']);
+                }
+            }
+            file_put_contents("likes.txt", serialize($likes));
             header('Location: '.$successRedirectionPage.'&error='.$error.'');
             return true;
         }
@@ -237,6 +253,22 @@ class Users {
                     $_SESSION['codePostal'] = $this->codePostal;
                     $_SESSION['ville'] = $this->ville;
                     $_SESSION['telephone'] = $this->telephone;
+
+                    //Complétions des recettes préférés
+                    if($likes = unserialize(file_get_contents("likes.txt"))) {
+                        if(isset($likes[$_SESSION['login']]) && isset($_SESSION['anonymous'])) {
+                            $likes[$_SESSION['login']] = array_merge($likes[$_SESSION['login']], $_SESSION['anonymous']);
+                        } else if(!isset($likes[$_SESSION['login']]) && isset($_SESSION['anonymous'])) {
+                            $likes[$_SESSION['login']] = [];
+                            $likes[$_SESSION['login']] = array_merge($likes[$_SESSION['login']], $_SESSION['anonymous']);
+                        }
+                    } else {
+                        if(isset($_SESSION['anonymous'])) {
+                            $likes[$_SESSION['login']] = [];
+                            $likes[$_SESSION['login']] = array_merge($likes[$_SESSION['login']], $_SESSION['anonymous']);
+                        }
+                    }
+                    file_put_contents("likes.txt", serialize($likes));
                     header('Location: '.$successRedirectionPage.'&error='.$error.'');
                     return true;
                 } else {
