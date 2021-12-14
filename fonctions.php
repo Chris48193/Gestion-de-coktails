@@ -84,7 +84,10 @@
 			if($likes = unserialize(file_get_contents("likes.txt"))) { 
 				if(isset($likes[$_SESSION['login']])) {
 					// print_r($Recettes[$coktails]);
-					if(in_array($Recettes[$coktails], $likes[$_SESSION['login']])) {
+					$data = $Recettes[$coktails];
+					$data["id"] = $coktails;
+
+					if(in_array($data, $likes[$_SESSION['login']])) {
 						$button = '<svg xmlns="http://www.w3.org/2000/svg" id="'.$coktails.'" width="16" height="16" fill="red" class="dislike bi bi-heart-fill" viewBox="0 0 16 16">
 							<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 							</svg>';
@@ -93,7 +96,9 @@
 			}
 		} else if(isset($_SESSION['anonymous'])) {
 				$fav = array_merge($fav, $_SESSION['anonymous']);
-				if(in_array($Recettes[$coktails], $fav)) {
+				$data = $Recettes[$coktails];
+				$data["id"] = $coktails;
+				if(in_array($data, $fav)) {
 					$button = '<svg xmlns="http://www.w3.org/2000/svg" id="'.$coktails.'" width="16" height="16" fill="red" class="dislike bi bi-heart-fill" viewBox="0 0 16 16">
 						<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 						</svg>';
