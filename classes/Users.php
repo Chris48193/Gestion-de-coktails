@@ -178,7 +178,7 @@ class Users {
             array_push($this->users, $user);
             //Enregistrement du nouvel utilisateur dans le fichier des utilisateurs pour stockage permanent
             file_put_contents("users.txt", serialize($this->users));
-            $error = "Bonjour ".$this->prenom.", votre compte a bien été créé. Vous avez été redirigé vers la page d'acceuil";
+            $error = "Bonjour ".$this->login.", votre compte a bien été créé. Vous avez été redirigé vers la page d'acceuil";
             echo "<br/> ".$error;
             array_push($this->erreursEnregistrement, $error);
             $error = $this->displayErrors($this->erreursEnregistrement);
@@ -307,7 +307,7 @@ class Users {
                 foreach($this->users as $key => $user) {
                     //Si l'utilisateur existe on modifie ses données avec les nouvelles
                     if ($user['login'] == $_SESSION['login']) {
-                        if($user['mdp'] == $this->ancienMdp) {
+                        if((($user['mdp'] == $this->mdp) && ($this->ancienMdp == "")) || ($this->ancienMdp == $user['mdp'])) {
                             $user = array(
                                 "login" => $this->login,
                                 "mdp" => $this->mdp,

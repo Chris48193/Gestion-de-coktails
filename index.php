@@ -15,6 +15,7 @@ session_start();
 </head>
 <body>
 <?php 
+    error_reporting(1);
     include("fonctions.php");
 
     if(isset($_GET['role']) && $_GET['role'] == "deconnect") {

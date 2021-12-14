@@ -8,6 +8,7 @@
                 <div class="text-center">
                   <h4 class="mt-1 mb-5 pb-1">Nous sommes la team coktails de Metz</h4>
                   <p>Vous pouvez modifiez les informations que vous souhaitez</p>
+                  <p style="color:red">NB: Veillez indiquer dans le champ "Mot de passe" soit votre mot de passe pour modifier une donnée ou alors votre nouveau mot de passe si vous souhaitez le modifier</p>
                 </div>
               </div>
               <div class="row g-0">
@@ -28,8 +29,8 @@
                     </div>
     
                     <div class="form-outline mb-4">
-                      <input type="password" id="mdp" name="mdp" class="form-control" placeholder="Nouveau mot de passe" />
-                      <label class="form-label" for="mdp">Nouveau mot de passe</label>
+                      <input type="password" id="mdp" name="mdp" class="form-control" placeholder="Veillez entrer le mot de passe" />
+                      <label class="form-label" for="mdp">Mot de passe</label>
                     </div>
 
                     <div class="form-outline mb-4">

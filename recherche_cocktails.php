@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <div class="container">
 <?php
 
@@ -68,8 +71,8 @@ if($scoreDesRecettes = $newSearch->recuperationRecettes()) {
             $nouvelleStructure = [
                                     "titre" => $recettesCourantes[$key]["titre"],
                                     "preparation" => $recettesCourantes[$key]["preparation"],
-                                    "img" => "./Photos/cocktail.png",
-                                    "likeColor" => "",
+                                    "img" => trouverImageCorrespondante($recettesCourantes[$key]["titre"]),
+                                    "likeColor" => "red",
                                     "index" => $recettesCourantes[$key]["index"],
                                     "ingredients" => $recettesCourantes[$key]["ingredients"],
                                     "id" => $key
@@ -81,7 +84,7 @@ if($scoreDesRecettes = $newSearch->recuperationRecettes()) {
             }*/
         }
     }
-    //print_r($recettesRequete);
+    // print_r($recettesRequete);
     echo afficherListeRecettes($recettesRequete);;
 } else {
     echo "Problème dans votre requête: recherche impossible";
