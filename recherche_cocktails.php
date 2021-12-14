@@ -70,7 +70,9 @@ if($scoreDesRecettes = $newSearch->recuperationRecettes()) {
                                     "preparation" => $recettesCourantes[$key]["preparation"],
                                     "img" => "./Photos/cocktail.png",
                                     "likeColor" => "",
-                                    "index" => $recettesCourantes[$key]["index"]
+                                    "index" => $recettesCourantes[$key]["index"],
+                                    "ingredients" => $recettesCourantes[$key]["ingredients"],
+                                    "id" => $key
                                  ];
             array_push($recettesRequete, $nouvelleStructure);
             /*echo $recettesCourantes[$key]["titre"]."<br/>";

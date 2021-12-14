@@ -11,8 +11,8 @@ class Recherche {
     private $recap = [
         "alimentsSouhaites" => [],
         "alimentsNonSouhaites" => [],
-        "alimentsNonSouhaitesAvecSuperCategorie" => [],
-        "alimentsSouhaitesAvecSuperCategorie" => [],
+        "alimentsNonSouhaitesAvecSousCategorie" => [],
+        "alimentsSouhaitesAvecSousCategorie" => [],
         "elementsNonReconnus" => []
     ];
     private $request_text; //Texte de la requete
@@ -106,10 +106,10 @@ class Recherche {
     public function separationAliments() {
         $alimentsSouhaites = array();
         $alimentsNonSouhaites = array();
-        $alimentsSouhaitesAvecSuperCategorie = array();
-        $alimentsNonSouhaitesAvecSuperCategorie = array();
+        $alimentsSouhaitesAvecSousCategorie = array();
+        $alimentsNonSouhaitesAvecSousCategorie = array();
         $elementsNonReconnus = array();
-
+        
         foreach($this->mots as $mot) {
             if(!in_array(preg_replace('/^[+-]/', '', $mot), $this->hierarchie_simple)) {
                 // Si le mot n'est pas reconnu
@@ -119,16 +119,20 @@ class Recherche {
                 if($mot[0] == '-') {
                     // Si on ne souhaite pas un mot, on l'ajoute dans le array des non souhaits
                     array_push($alimentsNonSouhaites, str_replace('-', '', $mot));
-                    array_push($alimentsNonSouhaitesAvecSuperCategorie, str_replace('-', '', $mot));
-                    foreach($this->Hierarchie[str_replace('-', '', $mot)]['super-categorie'] as $super_cat) {
-                        array_push($alimentsNonSouhaitesAvecSuperCategorie, str_replace('-', '', $super_cat));
+                    array_push($alimentsNonSouhaitesAvecSousCategorie, str_replace('-', '', $mot));
+                    if(isset($this->Hierarchie[str_replace('-', '', $mot)]['sous-categorie'])) {
+                        foreach($this->Hierarchie[str_replace('-', '', $mot)]['sous-categorie'] as $sous_cat) {
+                            array_push($alimentsNonSouhaitesAvecSousCategorie, str_replace('-', '', $sous_cat));
+                        }
                     }
                 } else {
                     // Si on souhaite un mot, on l'ajoute dans l'array des souhaits
                     array_push($alimentsSouhaites, str_replace('+', '', $mot));
-                    array_push($alimentsSouhaitesAvecSuperCategorie, str_replace('+', '', $mot));
-                    foreach($this->Hierarchie[str_replace('+', '', $mot)]['super-categorie'] as $super_cat) {
-                        array_push($alimentsSouhaitesAvecSuperCategorie, str_replace('+', '', $super_cat));
+                    array_push($alimentsSouhaitesAvecSousCategorie, str_replace('+', '', $mot));
+                    if(isset($this->Hierarchie[str_replace('+', '', $mot)]['sous-categorie'])) {
+                        foreach($this->Hierarchie[str_replace('+', '', $mot)]['sous-categorie'] as $sous_cat) {
+                            array_push($alimentsSouhaitesAvecSousCategorie, str_replace('+', '', $sous_cat));
+                        }
                     }
                     
                 }
@@ -139,8 +143,8 @@ class Recherche {
         $this->recap = [
             "alimentsSouhaites" => $alimentsSouhaites,
             "alimentsNonSouhaites" => $alimentsNonSouhaites,
-            "alimentsNonSouhaitesAvecSuperCategorie" => $alimentsNonSouhaitesAvecSuperCategorie,
-            "alimentsSouhaitesAvecSuperCategorie" => $alimentsSouhaitesAvecSuperCategorie,
+            "alimentsNonSouhaitesAvecSousCategorie" => $alimentsNonSouhaitesAvecSousCategorie,
+            "alimentsSouhaitesAvecSousCategorie" => $alimentsSouhaitesAvecSousCategorie,
             "elementsNonReconnus" => $elementsNonReconnus
         ];
         return $this->recap;
@@ -152,24 +156,33 @@ class Recherche {
     public function recuperationRecettes() {
 
         if(count($this->recap["alimentsSouhaites"]) > 0 || count($this->recap["alimentsNonSouhaites"]) > 0) {
-            
-            $point;
-            $numCategorie;
+            if(count($this->recap["alimentsSouhaites"]) == 0 && count($this->recap["alimentsNonSouhaites"]) > 0) {
+                foreach($this->Recettes as $index => $recette) {
+                    $score = 10;
+                    foreach($recette["index"] as $categorie) {
+                        if (in_array($categorie, $this->recap["alimentsNonSouhaitesAvecSousCategorie"])) {
+                            $score=0;
+                            break;
+                        }
+                    }
+                    $this->scoreRecettes[$index] = $score;
+                }
+                arsort($this->scoreRecettes);
+                return $this->scoreRecettes;
+            }
+
             //Parcours des catégories des différentes recettes
             //Nous créons ici une structure où les clés du array sont les index de chaque recette et la valeure est le score de recherche de cet recette. Nous trions en fin le array
             foreach($this->Recettes as $index => $recette) {
                 $score = 0;
-                $numCategorie = count($recette["index"]);
-                $point = 100/$numCategorie;
                 foreach($recette["index"] as $categorie) {
-                    if(in_array($categorie, $this->recap["alimentsSouhaitesAvecSuperCategorie"])){
-                        $score+=$point;
-                        //echo "La categorie est: ".$categorie."<br/>";
-                    } else if (in_array($categorie, $this->recap["alimentsNonSouhaitesAvecSuperCategorie"])) {
-                        $score-=$point;
+                    if(in_array($categorie, $this->recap["alimentsSouhaitesAvecSousCategorie"])){
+                        $score+=10;
+                    } else if (in_array($categorie, $this->recap["alimentsNonSouhaitesAvecSousCategorie"])) {
+                        $score=0;
+                        break;
                     }
                 }
-                //echo "Le score est : ".$score."<br/>";
                 $this->scoreRecettes[$index] = $score;
             }
             //Trie du array
@@ -192,11 +205,3 @@ class Recherche {
     }
 
 }
-
-//Récupération des hierachies dans une liste simple
-/* $hierachie_simple = [];
-foreach ($Hierarchie as $key => $value) {
-    array_push($hierachie_simple, $key);
-}
-
-print_r($hierachie_simple); */

@@ -124,9 +124,6 @@
             <div class="row-0">
               <div class="text-center pt-1 mb-5 pb-1">
                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Creer mon compte</button>
-                <div>
-                  <a class="text-muted" href="#!">Mot de pass oublié?</a>
-                </div>
               </div>
             </div> 
           </form>      
