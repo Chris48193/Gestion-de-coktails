@@ -11,7 +11,8 @@
                         "img" => trouverImageCorrespondante($recette["titre"]),
                         "likeColor" => "red",
                         "index" => $recette["index"],
-                        "ingredients" => ""
+                        "ingredients" => "",
+                        "id" => $recette["id"]
                      ];
                     array_push($recettesRequete, $nouvelleStructure);
                 }
@@ -31,7 +32,8 @@
                     "img" => trouverImageCorrespondante($recette["titre"]),
                     "likeColor" => "red",
                     "index" => $recette["index"],
-                    "ingredients" => ""
+                    "ingredients" => "",
+                    "id" => $recette["id"]
                  ];
                 array_push($recettesRequete, $nouvelleStructure);
             }
