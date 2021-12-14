@@ -1,7 +1,5 @@
 
-  
-<!-- MAIN -->
-<main>  
+<section>  
     <div class="container-fluid">
       <div class="row">
         <div class="col-2 border border-top-0">
@@ -9,10 +7,10 @@
             <span class="header-coktail">Aliment courant</span>
           </div>
           <?php
-			include("Donnees.inc.php");
-			$coktailsExtrait = array();
-			$coktailsComplets = array(); 
-			$coktailsSansSousCat= array();
+          include("Donnees.inc.php");
+          $coktailsExtrait = array();
+          $coktailsComplets = array(); 
+          $coktailsSansSousCat= array();
 			
             $sousCatExist = false;
             if (isset($_GET['superCat']) && isset($_GET['element'])) {
@@ -42,22 +40,22 @@
 							if($link=="Aliment"){
 								$affichage .= ' <span>
 												<a href="index.php?p=contenuIndex&element='.$link.'">'.$link.'</a>
-												/<span>';
+												/</span>';
 								
 							}else{
 								$affichage .= '<span>
 										<a href="index.php?p=contenuIndex&superCat='.$dynamicSuperCat.'&element='.$link.
 																					'&path='.substr($dynamicPath,0,-1).'">'.str_replace('_',' ',$link).'</a>
-												/<span>';
+												/</span>';
 							}
 						}
-						$affichage=rtrim($affichage,"/<span>") . "<span>";
+						$affichage=rtrim($affichage,"/</span>") . "</span>";
 						
                     $affichage .='</div>
-								  </br>
+								  <br/>
                                     <!-- Liste des sous-categories -->
                                   <div class="row">
-                                    <span >Sous-categories: <span>
+                                    <span >Sous-categories: </span>
                                   </div>
                                   <div id=linkList class="row">
                                     <ul class="nav nav-pills flex-column">';
@@ -90,12 +88,12 @@
 						$affichageStandard= '<div class="row">
 												<a href="#">'.$element.'</a>
 											</div>
-											</br>
+											<br/>
 											
 											<!-- Liste des sous-categories -->
 											
 											<div class="row">
-												<span >Sous-categories: <span>
+												<span >Sous-categories: </span>
 											</div>';
 						
 						
@@ -131,21 +129,19 @@
 							$affichageFinal.='<span>
 										<a href="index.php?p=contenuIndex&superCat='.$superLinks[$key-1].'&element='.$link.
 																					'&path='.$dynamicPath.'">'.str_replace('_',' ',$link).'</a>
-										/<span>';	
+										/</span>';	
 						}else{
 							$affichageFinal.='<span>
 										<a href="index.php?p=contenuIndex&superCat='.$superLinks[$key].'&element='.$link.
 																					'&path='.$dynamicPath.'">'.str_replace('_',' ',$link).'</a>
-										/<span>';	
+										/</span>';	
 							
-						}
-										
-                                  
+						}                      
 					}
-					$affichageFinal=rtrim($affichage,"/<span>") . "<span>";
+					$affichageFinal=rtrim($affichage,"/</span>") . "</span>";
 					$affichageFinal .=  '   -> Non existantes !
 								  </div>
-								  </br>';
+								  <br/>';
 					echo $affichageFinal;
 				}
           ?>    
@@ -172,10 +168,7 @@
 
             }if($sousCatExist==false){
 			  $coktailsSansSousCat=extraireDerniersCoktails($coktailsSansSousCat,$Recettes,$element);
-			  
-			  echo afficherListeRecettes($coktailsSansSousCat);
-				
-				
+			  echo afficherListeRecettes($coktailsSansSousCat);	
 			}          
           ?>
           <!-- Fin de la génération PHP -->
@@ -183,4 +176,6 @@
       </div>
       <hr class="d-sm-none">
     </div>
-  </main>
+  </div>
+</div>
+</section>

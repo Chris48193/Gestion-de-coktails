@@ -14,7 +14,7 @@
               <div class="col-lg-6">
                 <div class="card-body p-md-5 mx-md-4">
                   <div class="form-outline mb-4">
-                    <input type="text" id="login" name="login" class="form-control" placeholder="Entrez votre nom d'utilisateur"
+                    <input type="text" name="login" class="form-control" placeholder="Entrez votre nom d'utilisateur"
                     <?php 
                       if(isset($_SESSION['login'])) { $login = $_SESSION['login']; echo "value=\"$login\""; }
                     ?>
@@ -68,7 +68,7 @@
               <div class="col-lg-6">
                 <div class="card-body p-md-5 mx-md-4">
                   <div class="form-outline mb-4">
-                    <select class="form-select" name="sexe" id="">
+                    <select class="form-select" name="sexe" >
                       <option value="femme"
                       <?php 
                         if(isset($_SESSION['sexe']) && $_SESSION['sexe'] == "femme") { echo "selected"; }
@@ -80,7 +80,7 @@
                       ?>
                       >Homme</option>
                     </select>
-                    <label class="form-label" for="sexe" id="sexe">Sexe</label>
+                    <label class="form-label" id="sexe">Sexe</label>
                   </div>
   
                   <div class="form-outline mb-4">

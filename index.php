@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@ session_start();
     <!-- Barre de navigation -->
   <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #e2edf5;">
     <div class="container-fluid mb-10">
-      <a class="navbar-brand" href="index.php"> <img src="PhotosSite/logo_trans.png" alt="Logo Site de coktails" width="100px" height="70px"></a>
+      <a class="navbar-brand" href="index.php"> <img src="PhotosSite/logo_trans.png" alt="Logo Site de coktails" width="100" height="70"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -79,7 +79,6 @@ session_start();
     </div>
   </nav>
   <main id="result-search">
-    
       <!-- <div id="errorJS" class= "container m-3 p-3 bg-warning"></div> -->
       <?php
         //Affichage des erreurs

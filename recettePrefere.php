@@ -15,10 +15,6 @@ session_start();
             } else {
                 $likes[$_SESSION['login']] = [$data];
             }
-            // foreach($likes as $like) {
-
-            // }
-            // $recette = $Recettes[$idRecette];
             file_put_contents("likes.txt", serialize($likes));
             echo "La recette a bien été ajouté dans vos favoris";
         } else {

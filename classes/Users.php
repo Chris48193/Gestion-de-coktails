@@ -377,11 +377,11 @@ class Users {
      */
     public function displayErrors($errors) {
         //Génération du texte de l'erreur
-        $errorText = "<h6><div class=\"bg-warning text-success\">";
+        $errorText = "<div class=\"bg-warning text-success\">";
         foreach($errors as $error) {
-          $errorText .= $error . "</br>";
+          $errorText .= $error . "<br/>";
         }
-        $errorText .= "</div></h6>";
+        $errorText .= "</div>";
         return $errorText;
     }
 

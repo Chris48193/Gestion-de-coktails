@@ -1,7 +1,5 @@
 <?php
-
 require "classes/Users.php";
-//$_POST['login'] = "chris";
 
 $user = new Users();
 
@@ -10,7 +8,7 @@ $user = new Users();
 if(isset($_POST['login']) && trim($_POST['login']) != "" && isset($_POST['mdp']) && trim($_POST['mdp']) != "" && isset($_GET['function'])) {
     $user = new Users();
     if($_GET['function'] == "signup") {
-        //Registration
+        //Enregistrement
         $user->register("./index.php?p=contenuIndex", "./index.php?p=signup");
     } else if ($_GET['function'] == "login") {
         //Login
@@ -22,8 +20,7 @@ if(isset($_POST['login']) && trim($_POST['login']) != "" && isset($_POST['mdp'])
         $error = "Aucune tâche à effectuer";
         header('Location: ./index.php?error='.$error);
     }
-    
-        
+         
     
 } else {
     
@@ -31,7 +28,7 @@ if(isset($_POST['login']) && trim($_POST['login']) != "" && isset($_POST['mdp'])
 
     if(isset($_GET['function'])) {
         if($_GET['function'] == "signup") {
-            //Registration
+            //Enregistrement
             header('Location: ./index.php?p=signup&error='.$error);
         } else if ($_GET['function'] == "login") {
             //Login
@@ -43,47 +40,6 @@ if(isset($_POST['login']) && trim($_POST['login']) != "" && isset($_POST['mdp'])
             header('Location: ./index.php?error='.$error);
         }
     }
-    // header('Location: ./index.php?error='.$error);
-    //Redirection vers page d'enregistrement avec message d'erreur ci-dessous
-
-    
 }
 
-
-/*if($user->register()) {
-    //Redirection vers la page d'acceil
-    foreach($user->getErreursEnregistrement() as $error) {
-        echo $error."<br/>";
-    }
-    foreach($user->getErrors() as $error) {
-        echo $error."<br/>";
-    }
-
-    
-} else {
-    //Redirection vers la page d'enregistrement avec affichage d'erreur;
-    foreach($user->getErreursEnregistrement() as $error) {
-        echo $error."<br/>";
-    }
-    foreach($user->getErrors() as $error) {
-        echo $error."<br/>";
-    }
-}
-
-/*$user->login();
-foreach($user->getErreursEnregistrement() as $error) {
-    echo $error."<br/>";
-}
-foreach($user->getErrors() as $error) {
-    echo $error."<br/>";
-}*/
-
-// $users = [];
-// file_put_contents("users.txt", serialize($users));
-// echo "<br/>";
-// echo "<br/>";
-// $users = unserialize(file_get_contents("users.txt"));
-// foreach($users as $user) {
-//     print_r($user);
-//     echo "<br/>";
-// }
+?>

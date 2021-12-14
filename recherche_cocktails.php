@@ -23,10 +23,6 @@ if(!$newSearch->verifSyntaxeRequete()) {
 } else {
     //S'il n'y a pas d'erreur de syntaxe on récupère les mots
     $newSearch->analyseRequete();
-    /*$mots = $newSearch->analyseRequete();
-    foreach($mots as $mot) {
-        echo $mot . "<br/>";
-    }*/
 
     //Affichage du rapport
     $aliments = $newSearch->separationAliments();
@@ -56,16 +52,11 @@ if(!$newSearch->verifSyntaxeRequete()) {
     }
 
 }
-//echo print_r($aliments);
 echo "<br/><hr/>";
 echo "<h3>Partie 2</h3>";
 $recettesRequete = [];
 if($scoreDesRecettes = $newSearch->recuperationRecettes()) {
-    //file_put_contents('exemple.txt', print_r($scoreDesRecettes));
-    //echo print_r($scoreDesRecettes);
-    //print_r($scoreDesRecettes);
     foreach($scoreDesRecettes as $key => $value) {
-        //echo $key." => ".$value." ";
         if($value>0){
             $recettesCourantes = $newSearch->getRecettes();
             $nouvelleStructure = [
@@ -78,13 +69,8 @@ if($scoreDesRecettes = $newSearch->recuperationRecettes()) {
                                     "id" => $key
                                  ];
             array_push($recettesRequete, $nouvelleStructure);
-            /*echo $recettesCourantes[$key]["titre"]."<br/>";
-            foreach($recettesCourantes[$key]["index"] as $val) {
-                echo "&nbsp;&nbsp; ".$val."<br/>";
-            }*/
         }
     }
-    // print_r($recettesRequete);
     echo afficherListeRecettes($recettesRequete);;
 } else {
     echo "Problème dans votre requête: recherche impossible";
